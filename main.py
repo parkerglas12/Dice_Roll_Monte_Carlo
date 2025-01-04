@@ -8,8 +8,8 @@ def get_user_input() -> int:
     while True:
         try:
             sims: int = int(input("How many dice rolls would you like to perform: "))
-            if sims <= 1 or sims > 100000000:
-                raise ValueError("Please enter an integer greater than 1 and less than 100,000,001.")
+            if sims <= 1 or sims >= 100000001:
+                raise ValueError("Enter an integer between 2 and 100,000,000.")
         except ValueError as e:
             print(f"Error: {e}")
         else:
@@ -34,7 +34,7 @@ def create_bar_chart(results: dict[int, int], sims: int) -> None:
 
     bars = plt.bar(outcomes, counts, color="#0081cf")
     plt.xlabel("Outcome", fontsize=14, weight="bold", labelpad=10)
-    plt.xticks(fontsize=12, weight="bold")
+    plt.xticks(range(1, 7), fontsize=12, weight="bold")
     plt.ylabel("Count",  fontsize=14, weight="bold", labelpad=15)
     plt.title(f"Monte Carlo Simulation of {sims:,} Dice Rolls",  fontsize=14, weight="bold", pad=15)
     
